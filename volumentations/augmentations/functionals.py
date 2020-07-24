@@ -392,3 +392,11 @@ def clamping_crop(img, sh0_min, sh1_min, sh2_min, sh0_max, sh1_max, sh2_max):
     if sh2_max > w:
         sh2_max = w
     return img[int(sh0_min): int(sh0_max), int(sh1_min): int(sh1_max), int(sh2_min): int(sh2_max)]
+
+
+def cutout(img, holes, fill_value=0):
+    # Make a copy of the input image since we don't want to modify it directly
+    img = img.copy()
+    for x1, y1, z1, x2, y2, z2 in holes:
+        img[y1:y2, x1:x2, z1:z2] = fill_value
+    return img

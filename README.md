@@ -53,5 +53,7 @@ class ElasticTransformPseudo2D(DualTransform):
 class ElasticTransform(DualTransform):
 class Rotate(DualTransform):
 class RandomCropFromBorders(DualTransform):
+class GridDropout(DualTransform):
+class RandomDropPlane(DualTransform):
 ```
 
