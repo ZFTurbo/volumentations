@@ -32,28 +32,28 @@ img, lbl = aug_data['image'], aug_data['mask']
 ### Implemented 3D augmentations
 
 ```python
-class PadIfNeeded(DualTransform):
-class GaussianNoise(Transform):
-class Resize(DualTransform):
-class RandomScale(DualTransform):
-class RotatePseudo2D(DualTransform):
-class RandomRotate90(DualTransform):
-class Flip(DualTransform):
-class Normalize(Transform):
-class Float(DualTransform):
-class Contiguous(DualTransform):
-class Transpose(DualTransform):
-class CenterCrop(DualTransform):
-class RandomResizedCrop(DualTransform):
-class RandomCrop(DualTransform):
-class CropNonEmptyMaskIfExists(DualTransform):
-class ResizedCropNonEmptyMaskIfExists(DualTransform):
-class RandomGamma(Transform):
-class ElasticTransformPseudo2D(DualTransform):
-class ElasticTransform(DualTransform):
-class Rotate(DualTransform):
-class RandomCropFromBorders(DualTransform):
-class GridDropout(DualTransform):
-class RandomDropPlane(DualTransform):
+PadIfNeeded
+GaussianNoise
+Resize
+RandomScale
+RotatePseudo2D
+RandomRotate90
+Flip
+Normalize
+Float
+Contiguous
+Transpose
+CenterCrop
+RandomResizedCrop
+RandomCrop
+CropNonEmptyMaskIfExists
+ResizedCropNonEmptyMaskIfExists
+RandomGamma
+ElasticTransformPseudo2D
+ElasticTransform
+Rotate
+RandomCropFromBorders
+GridDropout
+RandomDropPlane
 ```
 
