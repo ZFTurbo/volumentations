@@ -24,10 +24,22 @@ def get_augmentation(patch_size):
 
 aug = get_augmentation((64, 128, 128))
 
+# with mask
 data = {'image': img, 'mask': lbl}
 aug_data = aug(**data)
 img, lbl = aug_data['image'], aug_data['mask']
+
+# without mask
+data = {'image': img}
+aug_data = aug(**data)
+img = aug_data['image']
+
 ```
+
+# Difference from initial version
+
+* Much faster 3D-resize method using scipy.zoom.
+* Additional augs: RandomCropFromBorders, GridDropout, RandomDropPlane
 
 ### Implemented 3D augmentations
 
