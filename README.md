@@ -1,7 +1,11 @@
-# Volumentations
+# Volumentations 3D
 
 Fork of [volumentations](https://github.com/ashawkey/volumentations) 3D Volume data augmentation package by [@ashawkey](https://github.com/ashawkey/).
 Initially inspired by [albumentations](https://github.com/albumentations-team/albumentations) library for augmentation of 2D images.
+
+# Installation
+
+`pip install volumentations-3D`
 
 ### Simple Example
 
@@ -68,4 +72,3 @@ RandomCropFromBorders
 GridDropout
 RandomDropPlane
 ```
-
