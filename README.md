@@ -40,6 +40,8 @@ img = aug_data['image']
 
 ```
 
+Check working usage example in [tst_volumentations.py](tst_volumentations.py)
+
 # Difference from initial version
 
 * Much faster 3D-resize method using scipy.zoom.
