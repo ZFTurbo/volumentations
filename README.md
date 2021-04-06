@@ -74,3 +74,18 @@ RandomCropFromBorders
 GridDropout
 RandomDropPlane
 ```
+
+## Citation
+
+More details on ArXiv: https://arxiv.org/abs/2104.01687
+
+If you find this code useful, please cite it as:
+```
+@InProceedings{RSolovyev_2021_stalled,
+  author = {Solovyev, Roman and Kalinin, Alexandr A. and Gabruseva, Tatiana},
+  title = {3D Convolutional Neural Networks for Stalled Brain Capillary Detection},
+  booktitle = {Arxiv: 2104.01687},
+  month = {April},
+  year = {2021}
+}
+```
