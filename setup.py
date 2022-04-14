@@ -18,7 +18,7 @@ setup(
    packages=find_packages(),
    python_requires='>=3.6',
    install_requires=['numpy',
-                     'scikit-image'
+                     'scikit-image',
                      'scipy',
                      'opencv-python'],
    classifiers=["Programming Language :: Python :: 3",
