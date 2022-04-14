@@ -1,12 +1,15 @@
 # Volumentations 3D
 
-Volumentations is a subpackage of AUCMEDI, which originated from the following Git repositories:
+3D Volume data augmentation package inspired by albumentations.
+
+Volumentations is a working project, which originated from the following Git repositories:
 - Original:                 https://github.com/albumentations-team/albumentations
 - 3D Conversion:            https://github.com/ashawkey/volumentations
 - Continued Development:    https://github.com/ZFTurbo/volumentations
 - Enhancements:             https://github.com/qubvel/volumentations
 
-Due to a stop of ongoing development in this subpackage, we decided to create a new repository.
+Due to a stop of ongoing development in this subpackage, we decided to create a new repository:  
+https://github.com/muellerdo/volumentations
 
 Nevertheless, if you are using this subpackage, please give credit to all authors including ashawkey, ZFTurbo and qubvel.
 
