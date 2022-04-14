@@ -7,7 +7,7 @@ with open("README.md", "r") as fh:
 
 setup(
    name='volumentations-aucmedi',
-   version='1.0.0',
+   version='1.0.1',
    description='Library for 3D augmentations. Inspired by albumentations.',
    url='https://github.com/muellerdo/volumentations',
    author='Dominik Müller',
