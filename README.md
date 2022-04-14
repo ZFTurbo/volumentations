@@ -55,8 +55,7 @@ img = aug_data['image']
 
 ```
 
-Check working usage example in [tst_volumentations.py](tst_volumentations.py)  
-Added another example in [testing.py](testing.py)
+Check working usage example in [tst_volumentations.py](tst_volumentations.py)
 
 # Difference from initial version
 
