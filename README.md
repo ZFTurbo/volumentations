@@ -6,23 +6,15 @@ Volumentations is a working project, which originated from the following Git rep
 - Original:                 https://github.com/albumentations-team/albumentations
 - 3D Conversion:            https://github.com/ashawkey/volumentations
 - Continued Development:    https://github.com/ZFTurbo/volumentations
-- Enhancements:             https://github.com/qubvel/volumentations
 
-Due to a stop of ongoing development in this subpackage, we decided to create a new repository:  
-https://github.com/muellerdo/volumentations
-
-Nevertheless, if you are using this subpackage, please give credit to all authors including ashawkey, ZFTurbo and qubvel.
+Nevertheless, if you are using this subpackage, please give credit to all authors including ashawkey, ZFTurbo, qubvel and muellerdo.
 
 Initially inspired by [albumentations](https://github.com/albumentations-team/albumentations) library for augmentation of 2D images.
 
 # Installation
 
 ```sh
-# Original
 pip install volumentations-3D
-
-# Fork
-pip install volumentations-aucmedi
 ```
 
 ### Simple Example
@@ -58,8 +50,8 @@ img = aug_data['image']
 
 ```
 
-Check working usage example in [tst_volumentations.py](tst_volumentations.py)  
-Added another usage example / testing in [testing.py](testing.py)  
+* Check working usage example in [tst_volumentations.py](tst_volumentations.py)  
+* Added another usage example / testing in [testing.py](testing.py)  
 
 # Difference from initial version
 
@@ -113,47 +105,4 @@ If you find this code useful, please cite it as:
   publisher={Elsevier},
   doi={10.1016/j.compbiomed.2021.105089}
 }
-```
-
-## Credits and License
-
-Added some credits/license to each file.
-
-```
-#=================================================================================#
-#  Author:       Pavel Iakubovskii, ZFTurbo, ashawkey, Dominik Müller             #
-#  Copyright:    albumentations:    : https://github.com/albumentations-team      #
-#                Pavel Iakubovskii  : https://github.com/qubvel                   #
-#                ZFTurbo            : https://github.com/ZFTurbo                  #
-#                ashawkey           : https://github.com/ashawkey                 #
-#                Dominik Müller     : https://github.com/muellerdo                #
-#                                                                                 #
-#  Volumentations History:                                                        #
-#       - Original:                 https://github.com/albumentations-team/album  #
-#                                   entations                                     #
-#       - 3D Conversion:            https://github.com/ashawkey/volumentations    #
-#       - Continued Development:    https://github.com/ZFTurbo/volumentations     #
-#       - Enhancements:             https://github.com/qubvel/volumentations      #
-#       - Further Enhancements:     https://github.com/muellerdo/volumentations   #
-#                                                                                 #
-#  MIT License.                                                                   #
-#                                                                                 #
-#  Permission is hereby granted, free of charge, to any person obtaining a copy   #
-#  of this software and associated documentation files (the "Software"), to deal  #
-#  in the Software without restriction, including without limitation the rights   #
-#  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell      #
-#  copies of the Software, and to permit persons to whom the Software is          #
-#  furnished to do so, subject to the following conditions:                       #
-#                                                                                 #
-#  The above copyright notice and this permission notice shall be included in all #
-#  copies or substantial portions of the Software.                                #
-#                                                                                 #
-#  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR     #
-#  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,       #
-#  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE    #
-#  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER         #
-#  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,  #
-#  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE  #
-#  SOFTWARE.                                                                      #
-#=================================================================================#
 ```
