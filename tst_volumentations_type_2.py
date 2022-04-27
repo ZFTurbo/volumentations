@@ -60,6 +60,7 @@ def grayscale_normalization(image):
     # Return normalized image
     return image_normalized
 
+
 def visualize_evaluation(index, volume, viz_path="test_volumentations"):
     # Grayscale Normalization of Volume
     volume_gray = grayscale_normalization(volume)
@@ -87,6 +88,7 @@ def visualize_evaluation(index, volume, viz_path="test_volumentations"):
     ani.save(out_path, writer='imagemagick', fps=None, dpi=None)
     # Close the matplot
     plt.close()
+
 
 #-----------------------------------------------------#
 #                Albumentations Builder               #
@@ -156,6 +158,7 @@ def build(aug_flip, aug_rotate, aug_brightness, aug_contrast, aug_saturation,
 
     # Compose transforms
     return Compose(transforms)
+
 
 #-----------------------------------------------------#
 #                  Application Test                   #
