@@ -191,16 +191,24 @@ def gaussian_noise(img, gauss):
     return img + gauss
 
 
-def resize(img, new_shape, interpolation=1):
+def resize(img, new_shape, interpolation=1, resize_type=0):
     """
     img: [H, W, D, C] or [H, W, D]
     new_shape: [H, W, D]
+    interpolation: The order of the spline interpolation (0-5)
+    resize_type: what type of resize to use: scikit-image or
     """
-    type = 0
 
-    if type == 0:
-        new_img = skt.resize(img, new_shape, order=interpolation, mode='reflect',
-                             cval=0, clip=True, anti_aliasing=False)
+    if resize_type == 0:
+        new_img = skt.resize(
+            img,
+            new_shape,
+            order=interpolation,
+            mode='reflect',
+            cval=0,
+            clip=True,
+            anti_aliasing=False
+        )
     else:
         shp = tuple(np.array(new_shape) / np.array(img.shape[:3]))
         # Multichannel

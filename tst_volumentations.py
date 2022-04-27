@@ -6,6 +6,7 @@ from volumentations import *
 import os
 import cv2
 import urllib.request
+import time
 
 
 OUTPUT_DIR = './debug_videos/'
@@ -33,7 +34,7 @@ def read_video(f):
     return frame_list
 
 
-def get_augmentation(patch_size):
+def get_augmentation_v1(patch_size):
     return Compose([
         Rotate((-15, 15), (0, 0), (0, 0), p=0.5),
         RandomCropFromBorders(crop_value=0.1, p=0.5),
@@ -47,6 +48,19 @@ def get_augmentation(patch_size):
         GaussianNoise(var_limit=(0, 5), p=0.5),
         RandomGamma(gamma_limit=(80, 120), p=0.5),
     ], p=1.0)
+
+
+def get_augmentation_v2(patch_size):
+    return Compose([
+        Resize(
+            patch_size,
+            interpolation=1,
+            resize_type=1,
+            always_apply=True,
+            p=1.0
+        ),
+    ], p=1.0)
+
 
 
 def create_video(image_list, out_file, fps):
@@ -74,13 +88,16 @@ def tst_volumentations():
 
     cube = read_video(inp_video)
     print('Sample video shape: {}'.format(cube.shape))
-    aug = get_augmentation(out_shape)
+    aug = get_augmentation_v2(out_shape)
+    start_time = time.time()
     for i in range(number_of_aug_videos):
-        print('Aug: {}'.format(i))
+        single_time = time.time()
         data = {'image': cube}
         aug_data = aug(**data)
         img = aug_data['image']
         create_video(img, OUTPUT_DIR + 'video_test_{}.avi'.format(i), 24)
+        print('Aug: {} Time: {:.2f} sec'.format(i, time.time() - single_time))
+    print('Total augm time: {:.2f} sec'.format(time.time() - start_time))
 
 
 if __name__ == '__main__':

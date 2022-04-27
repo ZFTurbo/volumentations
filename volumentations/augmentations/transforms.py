@@ -39,9 +39,9 @@ import random
 import numpy as np
 import numbers
 from enum import Enum, IntEnum
-from volumentations.core.transforms_interface import *
-from volumentations.augmentations import functional as F
-from volumentations.random_utils import *
+from ..core.transforms_interface import *
+from ..augmentations import functional as F
+from ..random_utils import *
 
 class Float(DualTransform):
     def apply(self, image):
@@ -86,16 +86,17 @@ class GaussianNoise(Transform):
 
 
 class Resize(DualTransform):
-    def __init__(self, shape, interpolation=1, always_apply=False, p=1):
+    def __init__(self, shape, interpolation=1, resize_type=1, always_apply=False, p=1):
         super().__init__(always_apply, p)
         self.shape = shape
         self.interpolation = interpolation
+        self.resize_type = resize_type
 
     def apply(self, img):
-        return F.resize(img, new_shape=self.shape, interpolation=self.interpolation)
+        return F.resize(img, new_shape=self.shape, interpolation=self.interpolation, resize_type=self.resize_type)
 
     def apply_to_mask(self, mask):
-        return F.resize(mask, new_shape=self.shape, interpolation=0)
+        return F.resize(mask, new_shape=self.shape, interpolation=0, resize_type=self.resize_type)
 
 
 class RandomScale(DualTransform):
@@ -217,23 +218,24 @@ class CenterCrop(DualTransform):
 
 
 class RandomResizedCrop(DualTransform):
-    def __init__(self, shape, scale_limit=(0.8, 1.2), interpolation=1, always_apply=False, p=1.0):
+    def __init__(self, shape, scale_limit=(0.8, 1.2), interpolation=1, resize_type=1, always_apply=False, p=1.0):
         super().__init__(always_apply, p)
         self.shape = shape
         self.scale_limit = scale_limit
         self.interpolation = interpolation
+        self.resize_type = resize_type
 
     def apply(self, img, scale=1, scaled_shape=None, h_start=0, w_start=0, d_start=0):
         if scaled_shape is None:
             scaled_shape = self.shape
         img = F.random_crop(img, scaled_shape[0], scaled_shape[1], scaled_shape[2], h_start, w_start, d_start)
-        return F.resize(img, new_shape=self.shape, interpolation=self.interpolation)
+        return F.resize(img, new_shape=self.shape, interpolation=self.interpolation, resize_type=self.resize_type)
 
     def apply_to_mask(self, img, scale=1, scaled_shape=None, h_start=0, w_start=0, d_start=0):
         if scaled_shape is None:
             scaled_shape = self.shape
         img = F.random_crop(img, scaled_shape[0], scaled_shape[1], scaled_shape[2], h_start, w_start, d_start)
-        return F.resize(img, new_shape=self.shape, interpolation=0)
+        return F.resize(img, new_shape=self.shape, interpolation=0, resize_type=self.resize_type)
 
     def get_params(self, **data):
         scale = random.uniform(self.scale_limit[0], self.scale_limit[1])
@@ -303,19 +305,20 @@ class CropNonEmptyMaskIfExists(DualTransform):
 
 
 class ResizedCropNonEmptyMaskIfExists(DualTransform):
-    def __init__(self, shape, scale_limit=(0.8, 1.2), interpolation=1, always_apply=False, p=1.0):
+    def __init__(self, shape, scale_limit=(0.8, 1.2), interpolation=1, resize_type=1, always_apply=False, p=1.0):
         super().__init__(always_apply, p)
         self.shape = shape
         self.scale_limit = scale_limit
         self.interpolation = interpolation
+        self.resize_type = resize_type
 
     def apply(self, img, x_min=0, y_min=0, z_min=0, x_max=0, y_max=0, z_max=0):
         img = F.crop(img, x_min, y_min, z_min, x_max, y_max, z_max)
-        return F.resize(img, self.shape, interpolation=self.interpolation)
+        return F.resize(img, self.shape, interpolation=self.interpolation, resize_type=self.resize_type)
 
     def apply_to_mask(self, img, x_min=0, y_min=0, z_min=0, x_max=0, y_max=0, z_max=0):
         img = F.crop(img, x_min, y_min, z_min, x_max, y_max, z_max)
-        return F.resize(img, self.shape, interpolation=0)
+        return F.resize(img, self.shape, interpolation=0, resize_type=self.resize_type)
 
     def get_params(self, **data):
         mask = data["mask"] # [H, W, D]
