@@ -88,7 +88,7 @@ def tst_volumentations():
 
     cube = read_video(inp_video)
     print('Sample video shape: {}'.format(cube.shape))
-    aug = get_augmentation_v2(out_shape)
+    aug = get_augmentation_v1(out_shape)
     start_time = time.time()
     for i in range(number_of_aug_videos):
         single_time = time.time()
