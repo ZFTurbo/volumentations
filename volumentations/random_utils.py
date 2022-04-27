@@ -34,3 +34,44 @@
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE  #
 #  SOFTWARE.                                                                      #
 #=================================================================================#
+import numpy as np
+from typing import Optional, Sequence, Union, Type, Any
+import random as py_random
+
+NumType = Union[int, float, np.ndarray]
+IntNumType = Union[int, np.ndarray]
+Size = Union[int, Sequence[int]]
+
+def get_random_state() -> np.random.RandomState:
+    return np.random.RandomState(py_random.randint(0, (1 << 32) - 1))
+
+def randint(
+    low: IntNumType,
+    high: Optional[IntNumType] = None,
+    size: Optional[Size] = None,
+    dtype: Type = np.int32,
+    random_state: Optional[np.random.RandomState] = None,
+) -> Any:
+    if random_state is None:
+        random_state = get_random_state()
+    return random_state.randint(low, high, size, dtype)
+
+def uniform(
+    low: NumType = 0.0,
+    high: NumType = 1.0,
+    size: Optional[Size] = None,
+    random_state: Optional[np.random.RandomState] = None,
+) -> Any:
+    if random_state is None:
+        random_state = get_random_state()
+    return random_state.uniform(low, high, size)
+
+def normal(
+    loc: NumType = 0.0,
+    scale: NumType = 1.0,
+    size: Optional[Size] = None,
+    random_state: Optional[np.random.RandomState] = None,
+) -> Any:
+    if random_state is None:
+        random_state = get_random_state()
+    return random_state.normal(loc, scale, size)

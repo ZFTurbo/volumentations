@@ -45,7 +45,7 @@ def get_augmentation(patch_size):
         Flip(2, p=0.5),
         RandomRotate90((1, 2), p=0.5),
         GaussianNoise(var_limit=(0, 5), p=0.5),
-        RandomGamma(gamma_limit=(0.5, 1.5), p=0.5),
+        RandomGamma(gamma_limit=(80, 120), p=0.5),
     ], p=1.0)
 
 
