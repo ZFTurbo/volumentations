@@ -269,22 +269,22 @@ class ResizedCropNonEmptyMaskIfExists(DualTransform):
         height, width, depth = [int(scale * i) for i in self.shape]
 
         if mask.sum() == 0:
-            x_min = random.randint(0, mask_height - self.height)
-            y_min = random.randint(0, mask_width - self.width)
-            z_min = random.randint(0, mask_depth - self.depth)
+            x_min = random.randint(0, mask_height - height)
+            y_min = random.randint(0, mask_width - width)
+            z_min = random.randint(0, mask_depth - depth)
         else:
             non_zero = np.argwhere(mask)
             x, y, z = random.choice(non_zero)
-            x_min = x - random.randint(0, self.height - 1)
-            y_min = y - random.randint(0, self.width - 1)
-            z_min = z - random.randint(0, self.depth - 1)
-            x_min = np.clip(x_min, 0, mask_height - self.height)
-            y_min = np.clip(y_min, 0, mask_width - self.width)
-            z_min = np.clip(z_min, 0, mask_depth - self.depth)
+            x_min = x - random.randint(0, height - 1)
+            y_min = y - random.randint(0, width - 1)
+            z_min = z - random.randint(0, depth - 1)
+            x_min = np.clip(x_min, 0, mask_height - height)
+            y_min = np.clip(y_min, 0, mask_width - width)
+            z_min = np.clip(z_min, 0, mask_depth - depth)
 
-        x_max = x_min + self.height
-        y_max = y_min + self.width
-        z_max = z_min + self.depth
+        x_max = x_min + height
+        y_max = y_min + width
+        z_max = z_min + depth
 
         return {
             "x_min": x_min, "x_max": x_max,
