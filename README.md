@@ -33,10 +33,13 @@ def get_augmentation(patch_size):
         Flip(2, p=0.5),
         RandomRotate90((1, 2), p=0.5),
         GaussianNoise(var_limit=(0, 5), p=0.2),
-        RandomGamma(gamma_limit=(0.5, 1.5), p=0.2),
+        RandomGamma(gamma_limit=(80, 120), p=0.2),
     ], p=1.0)
 
 aug = get_augmentation((64, 128, 128))
+
+img = np.random.randint(0, 255, size=(128, 256, 256), dtype=np.uint8)
+lbl = np.random.randint(0, 1, size=(128, 256, 256), dtype=np.uint8)
 
 # with mask
 data = {'image': img, 'mask': lbl}
