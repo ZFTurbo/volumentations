@@ -35,7 +35,7 @@
 #  SOFTWARE.                                                                      #
 #=================================================================================#
 import random
-from volumentations.augmentations import transforms as T
+from ..augmentations import transforms as T
 
 
 class Compose:

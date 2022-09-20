@@ -34,6 +34,6 @@
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE  #
 #  SOFTWARE.                                                                      #
 #=================================================================================#
-from volumentations.augmentations.transforms import *
-from volumentations.core.composition import *
-from volumentations.core.transforms_interface import *
+from .augmentations.transforms import *
+from .core.composition import *
+from .core.transforms_interface import *
