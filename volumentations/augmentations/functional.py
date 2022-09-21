@@ -152,7 +152,8 @@ def normalize(img, range_norm=True):
     if range_norm:
         mn = img.min()
         mx = img.max()
-        img = (img - mn) / (mx - mn)
+        if mx != mn:
+            img = (img - mn) / (mx - mn)
     mean = img.mean()
     std = img.std()
     denominator = np.reciprocal(std)
