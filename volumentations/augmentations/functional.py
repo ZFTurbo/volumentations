@@ -200,7 +200,7 @@ def resize(img, new_shape, interpolation=1, resize_type=0):
     img: [H, W, D, C] or [H, W, D]
     new_shape: [H, W, D]
     interpolation: The order of the spline interpolation (0-5)
-    resize_type: what type of resize to use: scikit-image or
+    resize_type: what type of resize to use: scikit-image (0) or zoom (1)
     """
 
     if resize_type == 0:
@@ -215,12 +215,17 @@ def resize(img, new_shape, interpolation=1, resize_type=0):
         )
     else:
         shp = tuple(np.array(new_shape) / np.array(img.shape[:3]))
-        # Multichannel
-        data = []
-        for i in range(img.shape[-1]):
-            d0 = zoom(img[..., i].astype(np.uint8).copy(), shp, order=interpolation)
-            data.append(d0.copy())
-        new_img = np.stack(data, axis=3)
+
+        if len(img.shape) == 4:
+            # Multichannel
+            data = []
+            for i in range(img.shape[-1]):
+                subimg = img[..., i].copy()
+                d0 = zoom(subimg, shp, order=interpolation)
+                data.append(d0.copy())
+            new_img = np.stack(data, axis=-1)
+        else:
+            new_img = zoom(img.copy(), shp, order=interpolation)
 
     return new_img
 
