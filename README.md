@@ -92,6 +92,23 @@ RandomBrightnessContrast
 ColorJitter
 ```
 
+### Speed table
+
+Speed in seconds per one sample.
+
+| Aug name | Cube = 64px | Cube = 96px | Cube = 128px | Cube = 224px | Cube = 256px |
+|----------|-------------|-------------|--------------|--------------|--------------|
+| Rotate | 0.0402 | 0.1366 | 0.3246 | 1.7546 | 2.6349 | 
+| RandomCropFromBorders| 0.0037 | 0.0129 | 0.0315 | 0.1634 | 0.2426 |
+| ElasticTransform | 0.1588 | 0.5439 | 2.8649 | 11.8937 | 42.3886 |
+| Resize (type = 0) | 0.4029 | 0.4077 | 0.4245 | 0.5545 | 0.6278 |
+| Resize (type = 1) | 0.3618 | 0.3696 | 0.3871 | 0.5174 | 0.5896 |
+| Flip | 0.0042 | 0.0134 | 0.0314 | 0.1649 | 0.2453 |
+| RandomRotate90 | 0.0040 | 0.0140 | 0.0306 | 0.1672 | 0.2439 |
+| GaussianNoise | 0.0143 | 0.0406 | 0.0956 | 0.4992 | 0.7381 |
+| RandomGamma | 0.0066 | 0.0211 | 0.0505 | 0.2654 |  0.3989 |
+| RandomScale | 0.0158 | 0.0518 | 0.1198 | 0.6391 | 0.9457 |
+
 ## Citation
 
 For more details, please refer to the publication: https://doi.org/10.1016/j.compbiomed.2021.105089
