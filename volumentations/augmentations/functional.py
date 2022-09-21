@@ -156,7 +156,10 @@ def normalize(img, range_norm=True):
     mean = img.mean()
     std = img.std()
     denominator = np.reciprocal(std)
-    img = (img - mean) * denominator
+    if np.isinf(denominator).any():
+        img[...] = 0
+    else:
+        img = (img - mean) * denominator
     return img
 
 
