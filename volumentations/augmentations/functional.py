@@ -40,7 +40,7 @@ import skimage.transform as skt
 import scipy.ndimage.interpolation as sci
 from scipy.ndimage import zoom
 import cv2
-from scipy.ndimage.filters import gaussian_filter
+from scipy.ndimage import gaussian_filter
 from scipy.ndimage import map_coordinates
 from warnings import warn
 
