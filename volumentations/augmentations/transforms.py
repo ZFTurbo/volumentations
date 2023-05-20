@@ -970,7 +970,7 @@ class Downscale(ImageOnlyTransform):
     """Decreases image quality by downscaling and upscaling back.
     Args:
         scale_min (float): lower bound on the image scale. Should be < 1.
-        scale_max (float):  lower bound on the image scale. Should be .
+        scale_max (float):  upper bound on the image scale. Should be < 1.
         interpolation: cv2 interpolation method. cv2.INTER_NEAREST by default
     Targets:
         image
