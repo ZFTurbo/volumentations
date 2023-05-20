@@ -79,7 +79,6 @@ GlassBlur
 GridDistortion
 GridDropout
 ImageCompression
-ImageCompressionType
 Normalize
 PadIfNeeded
 RandomBrightnessContrast
