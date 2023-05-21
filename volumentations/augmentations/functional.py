@@ -433,7 +433,7 @@ def rot_z(angle):
     return rotation_z
 
 
-def rescale_warp(img, scale, interpolation=1):
+def rescale_warp(img, scale, interpolation=1, border_mode='reflect', value=0):
     """
     img: [H, W, D(, C)]
     """
