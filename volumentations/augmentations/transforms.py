@@ -65,6 +65,32 @@ class PadIfNeeded(DualTransform):
 
     def apply_to_mask(self, mask):
         return F.pad(mask, self.shape, self.border_mode, self.mask_value)
+    
+
+class Blur(ImageOnlyTransform):
+    """Blur the input image using a random-sized kernel.
+    Args:
+        blur_limit (int, (int, int)): maximum kernel size for blurring the input image.
+            Should be in range [3, inf). Default: (3, 7).
+        p (float): probability of applying the transform. Default: 0.5.
+    Targets:
+        image
+    Image types:
+        uint8, float32
+    """
+
+    def __init__(self, blur_limit=7, always_apply=False, p=0.5):
+        super(Blur, self).__init__(always_apply, p)
+        self.blur_limit = to_tuple(blur_limit, 3)
+
+    def apply(self, image, ksize=3, **params):
+        return F.blur(image, ksize)
+
+    def get_params(self, **data):
+        return {"ksize": int(random.choice(np.arange(self.blur_limit[0], self.blur_limit[1] + 1, 2)))}
+
+    def get_transform_init_args_names(self):
+        return ("blur_limit",)
 
 
 class GaussianNoise(Transform):
@@ -81,7 +107,7 @@ class GaussianNoise(Transform):
         var = uniform(self.var_limit[0], self.var_limit[1])
         sigma = var ** 0.5
 
-        gauss = normal(self.mean, sigma, image.shape)
+        gauss = normal(self.mean, sigma, image.shape).astype("float32")
         return {"gauss": gauss}
 
 
@@ -119,19 +145,22 @@ class RandomScale2(DualTransform):
     """
     TODO: compare speeds with version 1.
     """
-    def __init__(self, scale_limit=[0.9, 1.1], interpolation=1, always_apply=False, p=0.5):
+    def __init__(self, scale_limit=[0.9, 1.1], interpolation=1, border_mode='constant', value=0, mask_value=0, always_apply=False, p=0.5):
         super().__init__(always_apply, p)
         self.scale_limit = scale_limit
         self.interpolation = interpolation
+        self.border_mode = border_mode
+        self.value = value
+        self.mask_value = mask_value
 
     def get_params(self, **data):
         return {"scale": random.uniform(self.scale_limit[0], self.scale_limit[1])}
 
     def apply(self, img, scale):
-        return F.rescale_warp(img, scale, interpolation=self.interpolation)
+        return F.rescale_warp(img, scale, interpolation=self.interpolation, border_mode=self.border_mode, value=self.value)
 
     def apply_to_mask(self, mask, scale):
-        return F.rescale_warp(mask, scale, interpolation=0)
+        return F.rescale_warp(mask, scale, interpolation=0, border_mode=self.border_mode, value=self.mask_value)
 
 
 class RotatePseudo2D(DualTransform):
@@ -693,7 +722,7 @@ class GridDropout(DualTransform):
                 for k in range(depth // unit_depth + 1):
                     x1 = min(shift_x + unit_width * i, width)
                     y1 = min(shift_y + unit_height * j, height)
-                    z1 = min(shift_z + unit_depth * j, depth)
+                    z1 = min(shift_z + unit_depth * k, depth)
                     x2 = min(x1 + hole_width, width)
                     y2 = min(y1 + hole_height, height)
                     z2 = min(z1 + hole_depth, depth)
@@ -970,7 +999,7 @@ class Downscale(ImageOnlyTransform):
     """Decreases image quality by downscaling and upscaling back.
     Args:
         scale_min (float): lower bound on the image scale. Should be < 1.
-        scale_max (float):  lower bound on the image scale. Should be .
+        scale_max (float):  upper bound on the image scale. Should be < 1.
         interpolation: cv2 interpolation method. cv2.INTER_NEAREST by default
     Targets:
         image

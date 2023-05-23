@@ -132,28 +132,3 @@ class ImageOnlyTransform(Transform):
     @property
     def targets(self):
         return {"image": self.apply}
-
-class Blur(ImageOnlyTransform):
-    """Blur the input image using a random-sized kernel.
-    Args:
-        blur_limit (int, (int, int)): maximum kernel size for blurring the input image.
-            Should be in range [3, inf). Default: (3, 7).
-        p (float): probability of applying the transform. Default: 0.5.
-    Targets:
-        image
-    Image types:
-        uint8, float32
-    """
-
-    def __init__(self, blur_limit=7, always_apply=False, p=0.5):
-        super(Blur, self).__init__(always_apply, p)
-        self.blur_limit = to_tuple(blur_limit, 3)
-
-    def apply(self, image, ksize=3, **params):
-        return F.blur(image, ksize)
-
-    def get_params(self, **data):
-        return {"ksize": int(random.choice(np.arange(self.blur_limit[0], self.blur_limit[1] + 1, 2)))}
-
-    def get_transform_init_args_names(self):
-        return ("blur_limit",)

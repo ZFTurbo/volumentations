@@ -60,3 +60,24 @@ class Compose:
             data = tr(force_apply, self.targets, **data)
 
         return data
+
+
+class ComposeChoice:
+    def __init__(self, transforms, p=1.0, n=1, targets=[['image'], ['mask']]):
+        assert 0 <= p <= 1
+        self.transforms = transforms
+        self.p = p
+        self.n = n
+        self.targets = targets
+
+    def __call__(self, **data):
+        if random.random() > self.p:
+            return data
+
+        transforms = random.sample(self.transforms, self.n)
+        transforms = [T.Float()] + transforms + [T.Contiguous()]
+
+        for tr in transforms:
+            data = tr(True, self.targets, **data)
+
+        return data
