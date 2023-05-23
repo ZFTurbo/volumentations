@@ -17,7 +17,7 @@ Initially inspired by [albumentations](https://github.com/albumentations-team/al
 pip install volumentations-3D
 ```
 
-### Simple Example
+# Simple Example
 
 ```python
 from volumentations import *
@@ -62,8 +62,9 @@ img = aug_data['image']
 * Implemented multiple augmentations.
 * Approximation enhancements to be closer to Albumentations.
 
-### Implemented 3D augmentations
+# Implemented 3D augmentations
 
+Check the [EXAMPLES](EXAMPLES.md) page for visual demonstrations
 ```python
 CenterCrop
 ColorJitter
@@ -98,7 +99,7 @@ RotatePseudo2D
 Transpose
 ```
 
-### Speed table
+# Speed table
 
 Speed in seconds per one sample.
 
@@ -115,7 +116,7 @@ Speed in seconds per one sample.
 | RandomGamma | 0.0066 | 0.0211 | 0.0505 | 0.2654 |  0.3989 |
 | RandomScale | 0.0158 | 0.0518 | 0.1198 | 0.6391 | 0.9457 |
 
-## Citation
+# Citation
 
 For more details, please refer to the publication: https://doi.org/10.1016/j.compbiomed.2021.105089
 

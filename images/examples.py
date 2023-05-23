@@ -6,6 +6,7 @@ This script requires (in addition to volumentations requirements):
 import numpy as np
 from volumentations import *
 from plotly import graph_objects as go
+from plotly import express as px
 
 
 augmentations = [
@@ -13,7 +14,7 @@ augmentations = [
     ElasticTransform((.7, .71)),
     GlassBlur(),
     GridDistortion(distort_limit=.5),
-    GridDropout(holes_number_x=2, holes_number_y=2, holes_number_z=2, random_offset=True, fill_value=.5),
+    GridDropout(holes_number_x=3, holes_number_y=3, holes_number_z=3, random_offset=True, fill_value=.5),
     RandomGamma(gamma_limit=(70, 71)),
     RandomScale2(scale_limit=[1.5, 1.6]),
     RotatePseudo2D((1, 2), limit=(40, 41)),
@@ -35,6 +36,8 @@ fig = go.Figure(data=go.Isosurface(
     colorscale="gray"
 ))
 fig.write_image("images/original.png")
+fig = px.imshow(values[20], color_continuous_scale="gray", zmin=values[20].min(), zmax=values[20].max())
+fig.write_image("images/original_flat.png")
 
 for aug in augmentations:
     cube = aug(True, ["image"], image=values)["image"]
@@ -54,3 +57,7 @@ for aug in augmentations:
     name = aug.__class__.__name__
     print(f"images/{name}.png")
     fig.write_image(f"images/{name}.png")
+
+    fig = px.imshow(cube[20], color_continuous_scale="gray", zmin=values[20].min(), zmax=values[20].max())
+    print(f"images/{name}_flat.png")
+    fig.write_image(f"images/{name}_flat.png")
