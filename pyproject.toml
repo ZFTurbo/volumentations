@@ -10,7 +10,7 @@ authors = [
 ]
 license = "MIT"
 readme = "README.md"
-packages = [{include = "volumentations_3d"}]
+packages = [{include = "volumentations"}]
 
 [tool.poetry.dependencies]
 python = ">=3.9, <3.12"
