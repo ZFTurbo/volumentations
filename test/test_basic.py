@@ -1,0 +1,37 @@
+import pytest
+
+from volumentations import *
+
+augmentations = [
+    CenterCrop,
+    ColorJitter,
+    Contiguous,
+    CropNonEmptyMaskIfExists,
+    Downscale,
+    ElasticTransform,
+    ElasticTransformPseudo2D,
+    Flip,
+    Float,
+    GaussianNoise,
+    GlassBlur,
+    GridDistortion,
+    GridDropout,
+    ImageCompression,
+    Normalize,
+    PadIfNeeded,
+    RandomBrightnessContrast,
+    RandomCrop,
+    RandomCropFromBorders,
+    RandomDropPlane,
+    RandomGamma,
+    RandomResizedCrop,
+    RandomRotate90,
+    RandomScale,
+    RandomScale2,
+    RemoveEmptyBorder,
+    Resize,
+    ResizedCropNonEmptyMaskIfExists,
+    Rotate,
+    RotatePseudo2D,
+    Transpose,
+]
