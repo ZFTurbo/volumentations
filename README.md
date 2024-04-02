@@ -116,6 +116,13 @@ Speed in seconds per one sample.
 | RandomGamma | 0.0066 | 0.0211 | 0.0505 | 0.2654 |  0.3989 |
 | RandomScale | 0.0158 | 0.0518 | 0.1198 | 0.6391 | 0.9457 |
 
+### Related repositories
+
+ * [timm_3d](https://github.com/ZFTurbo/timm_3d) - classification models in 3D for PyTorch
+ * [classification_models_3D](https://github.com/ZFTurbo/classification_models_3D) - 3D volumes classification models for Keras/Tensorflow
+ * [segmentation_models_pytorch_3d](https://github.com/ZFTurbo/segmentation_models_pytorch_3d) - 3D volumes segmentation models for PyTorch
+ * [segmentation_models_3D](https://github.com/ZFTurbo/segmentation_models_3D) - segmentation models in 3D for Keras/Tensorflow
+
 # Citation
 
 For more details, please refer to the publication: https://doi.org/10.1016/j.compbiomed.2021.105089
