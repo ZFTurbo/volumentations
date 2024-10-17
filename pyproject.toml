@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "volumentations-3d"
+version = "1.0.4"
+description = "Library for 3D augmentations"
+authors = [
+    "Roman Sol (ZFTurbo)",
+    "ashawkey",
+    "qubvel",
+    "muellerdo"
+]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "volumentations"}]
+
+[tool.poetry.dependencies]
+python = ">=3.9, <3.12"
+scikit-image = "^0.20.0"
+opencv-python = "^4.7.0.72"
+numpy = "^1.24.3"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.3.1"
+flake8 = "^6.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
